@@ -1,0 +1,25 @@
+apiVersion: skaffold/v2beta14
+kind: Config
+metadata:
+  name: test
+build:
+  artifacts:
+  - image: test
+deploy:
+  kubectl:
+    manifests:
+    - k8s/common.yaml
+    - k8s/deployment.yaml
+profiles:
+- name: dev
+  deploy:
+    kubectl:
+      manifests:
+      - k8s/common.yaml
+      - k8s/dev/deployment.yaml
+- name: prod
+  deploy:
+    kubectl:
+      manifests:
+      - k8s/common.yaml
+      - k8s/prod/deployment.yaml

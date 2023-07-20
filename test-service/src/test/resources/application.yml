@@ -1,0 +1,13 @@
+test:
+  test:
+    - kvg_id: "kvg:04e3b"
+      children:
+        - kvg_id: "kvg:04e3b-g1"
+        - kvg_id: "kvg:04e3b-g3"
+          children:
+            - kvg_id : "kvg:04e3b-g4"
+mongodb:
+  database: test
+openapi:
+  views:
+    enabled: true

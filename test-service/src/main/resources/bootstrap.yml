@@ -1,0 +1,55 @@
+micronaut:
+  application:
+    name: test
+  config-client:
+    enabled: true
+  security:
+    token:
+      propagation:
+        enabled: true
+        service-id-regex: "test"
+        #service-id-regex: "service1|service2"
+      roles-name: 'groups'
+      jwt:
+        enabled: true
+        signatures:
+          jwks:
+            keycloak:
+              url: 'http://nekonex-ingress.info/api/keycloak/realms/nekonex_realm/protocol/openid-connect/certs'
+  metrics:
+    enabled: true
+    tags:
+      app: test
+    export:
+      prometheus:
+        enabled: true
+        config:
+          descriptions: true
+  logging:
+    level:
+      io.micronaut.security: TRACE
+  openapi:
+    views:
+      enabled: true
+endpoints:
+  prometheus:
+    sensitive: false
+    enabled: true
+    details-visible: ANONYMOUS
+  health:
+    enabled: true
+    sensitive: false
+    details-visible: ANONYMOUS
+  metrics:
+    enabled: true
+    sensitive: false
+    details-visible: ANONYMOUS
+kubernetes:
+  client:
+    config-maps:
+      labels:
+        - app: test
+    secrets:
+      enabled: true
+      labels:
+        - app: test
